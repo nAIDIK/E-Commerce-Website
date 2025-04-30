@@ -13,9 +13,21 @@ const Nav = () => {
       <hr className="w-[80%] my-3" />
       <h1 className="text-2xl">Category Filter</h1>
       <ul className="w-[80%] mt-2">
-        <li className="mb-3 flex items-center"> <span className="w-[15px] h-[15px] bg-blue-200 rounded-full mr-2"></span>Male</li>
-        <li className="mb-3 flex items-center"> <span className="w-[15px] h-[15px] bg-red-200 rounded-full mr-2"></span>Female</li>
-        <li className="mb-3 flex items-center"> <span className="w-[15px] h-[15px] bg-green-200 rounded-full mr-2"></span>Kids</li>
+        <li className="mb-3 flex items-center">
+          {" "}
+          <span className="w-[15px] h-[15px] bg-blue-200 rounded-full mr-2"></span>
+          Male
+        </li>
+        <li className="mb-3 flex items-center">
+          {" "}
+          <span className="w-[15px] h-[15px] bg-red-200 rounded-full mr-2"></span>
+          Female
+        </li>
+        <li className="mb-3 flex items-center">
+          {" "}
+          <span className="w-[15px] h-[15px] bg-green-200 rounded-full mr-2"></span>
+          Kids
+        </li>
       </ul>
     </nav>
   );

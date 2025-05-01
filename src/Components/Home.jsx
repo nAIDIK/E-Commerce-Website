@@ -24,14 +24,14 @@ const Home = () => {
         {products.map((product) => (
           
           <Link
-            to={/details/${product.id}}
+            to={`/details/${product.id}`}
             key={product.id}
             className="card w-[18%] h-[40vh] mr-3 mb-3 p-3 border shadow rounded flex flex-col justify-center items-center hover:shadow-lg transition-transform duration-200 hover:scale-105"
           >
             <div
               className="image w-full h-[80%] bg-contain bg-no-repeat bg-center mb-3"
               style={{
-                backgroundImage: url(${product.image}),
+                backgroundImage: `url(${product.image})`,
               }}
             ></div>
             <h1 className="text-center font-medium hover:text-blue-400">{product.title}</h1>

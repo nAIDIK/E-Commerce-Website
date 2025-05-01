@@ -1,24 +1,41 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import axios from "../Utils/Axios";
+import Loading from "./Loading"
 
-const Details = () => {
-  return (
+
+const Details = () => { 
+
+const [ product , setProduct ] = useState(null);
+
+const {id} =useParams();
+
+const getSingleProduct = async () =>{
+  try {
+    const { data } = await axios.get (`/products/${id}`);
+    // console.log(data);
+    setProduct(data);
+  } catch (error) {
+    console.error("Error fetching products:", error);
+  }
+};
+
+useEffect (() =>{
+ getSingleProduct();
+},[]);
+
+  return product ? (
     <div className="container w-[70%] h-screen m-auto p-[10%] flex items-center justify-between gap-10">
       <img
         className="h-[80%] w-[40%] object-contain"
-        src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
-        alt="Backpack"
+        src= {`${product.image}`}
+        alt="img"
       />
       <div>
-        <h1 className="text-2xl font-semibold mb-2">
-          Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops
-        </h1>
-        <h3 className="text-zinc-500 my-2">Men's Clothing</h3>
-        <h2 className="text-red-500 font-medium mb-2">$ 109.95</h2>
-        <p className="text-gray-800 mb-4">
-          Your perfect pack for everyday use and walks in the forest. Stash your
-          laptop (up to 15 inches) in the padded sleeve, your everyday
-        </p>
+        <h1 className="text-2xl font-semibold mb-2">{product.title}</h1>
+        <h3 className="text-zinc-500 my-2">{product.category}</h3>
+        <h2 className="text-red-500 font-medium mb-2">{product.price}</h2>
+        <p className="text-gray-800 mb-4">{product.description}</p>
         <div className="flex gap-4">
           <Link
             to="/edit"
@@ -27,7 +44,7 @@ const Details = () => {
             Edit
           </Link>
           <Link
-            to="/"
+            to="/delete"
             className="px-4 py-1 border border-red-600 rounded hover:bg-red-100"
           >
             Delete
@@ -35,6 +52,8 @@ const Details = () => {
         </div>
       </div>
     </div>
+  ) : (
+    <Loading />
   );
 };
 

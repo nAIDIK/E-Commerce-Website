@@ -6,8 +6,8 @@ import Context from './utils/Context.jsx';
 
 createRoot(document.getElementById('root')).render(
   <Context>
-  <StrictMode>
+  {/* <StrictMode> */}
     <App />
-  </StrictMode>
+  {/* </StrictMode> */}
   </Context>
 )

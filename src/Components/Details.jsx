@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "../Utils/Axios";
 import Loading from "./Loading"
+import Create from "./Create";
 
 
 const Details = () => { 

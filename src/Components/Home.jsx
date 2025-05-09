@@ -1,28 +1,42 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import Nav from "./Nav";
-import { ProductContext } from "../utils/Context";
+import { ProductContext } from "../Utils/Context";
+import Loading from "./Loading";
+import axios from "axios";
 
 const Home = () => {
   const [products] = useContext(ProductContext);
 
-  if (!Array.isArray(products) || products.length === 0) {
-    return (
-      <>  
-        <Nav />
-        <div className="h-full w-[85%] p-10 pt-[5%] flex justify-center items-center">
-          <h2 className="text-2xl font-semibold animate-pulse">Loading Products...</h2>
-        </div>
-      </>
-    );
-  }
+const {search} = useLocation();
+const category = decodeURIComponent(search.split("=")[1]);
 
-  return (
+
+const [filteredProducts, setFilteredProducts ] = useState (null) ;
+
+const getCategory = async () =>{
+  try{
+    const {data} = await axios.get(`/products/category/${category}`);
+    setFilteredProducts(data);
+  } catch (error) {
+    console.log(error);
+    
+  }
+}
+
+useEffect(() =>{
+if (!filteredProducts || category == "undefined")
+  setFilteredProducts(products);
+  if (category != "undefined"){
+    setFilteredProducts(products.filter((items) => items.category == category));
+  }
+},[category,products]);
+
+  return products ? (
     <>
       <Nav />
       <div className="h-full w-[85%] p-10 pt-[5%] flex flex-wrap overflow-x-hidden overflow-y-auto">
-        {products.map((product) => (
-          
+        {filteredProducts && filteredProducts.map((product) => (
           <Link
             to={`/details/${product.id}`}
             key={product.id}
@@ -40,7 +54,9 @@ const Home = () => {
         ))}
       </div>
     </>
-  );
+  ) : (
+    <Loading />
+  )
 };
 
 export default Home;

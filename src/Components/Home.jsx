@@ -30,7 +30,7 @@ if (!filteredProducts || category == "undefined")
   if (category != "undefined"){
     setFilteredProducts(products.filter((items) => items.category == category));
   }
-},[category,products]);
+},[category, products]);
 
   return products ? (
     <>

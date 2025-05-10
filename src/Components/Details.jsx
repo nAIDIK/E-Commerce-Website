@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "../Utils/Axios";
 import Loading from "./Loading"
 import Create from "./Create";
+import { useContext } from "react";
+import { ProductContext } from "../Utils/Context";
 
 
 const Details = () => { 
 
-const [ product , setProduct ] = useState(null);
+const [ product , setProduct ] = useState( JSON.parse(localStorage.getItem("products")) || null);
+
+const [products, setProducts] = useContext (ProductContext);
+
+const navigate = useNavigate();
 
 const {id} =useParams();
 
@@ -23,7 +29,18 @@ const getSingleProduct = async () =>{
 
 useEffect (() =>{
  getSingleProduct();
+if (!product){
+  setProduct(product.filter((item) => item.id !== id)[0]);
+}
 },[]);
+
+
+const handleDelete = (id) =>{
+  const filteredProducts =  product.filter((item) => item.id !== id);
+  setProducts(products);
+  localStorage.setItem ("product",JSON.stringify(filteredProducts));
+  navigate("/")
+}
 
   return product ? (
     <div className="container w-[70%] h-screen m-auto p-[10%] flex items-center justify-between gap-10">
@@ -44,12 +61,12 @@ useEffect (() =>{
           >
             Edit
           </Link>
-          <Link
-            to="/delete"
+          <button
+            onClick={() =>  handleDelete(product.id)}
             className="px-4 py-1 border border-red-600 rounded hover:bg-red-100"
           >
             Delete
-          </Link>
+          </button>
         </div>
       </div>
     </div>

@@ -30,7 +30,7 @@ const Nav = () => {
       <div className="w-[80%] mt-2">
         {category.map(( cat, i) => (
           <Link 
-          to = {`/?category/${cat}`}
+          to = {`/?category=${cat}`}
             key={i}
             className="mb-3 flex items-center">
 

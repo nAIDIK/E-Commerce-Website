@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "../Utils/Axios";
 import Loading from "./Loading";
 import { ProductContext } from "../Utils/Context";
+// import  CarouselRatio from "./CarouselRatio";
 
 const Details = () => {
 
@@ -70,6 +71,7 @@ const Details = () => {
           </button>
         </div>
       </div>
+      {/* (<CarouselRatio/> ); */}
     </div>
   ) : ( <Loading />
   );

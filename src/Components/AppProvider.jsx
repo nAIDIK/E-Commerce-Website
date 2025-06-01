@@ -154,10 +154,9 @@ function RememberMeCheckbox() {
   );
 }
 
-export default function Login() {
+export default function SlotsSignIn() {
   const theme = useTheme();
   return (
-    <div className="h-full w-full flex justify-center items-center bg-blue-300">
     <AppProvider theme={theme}>
       <SignInPage
         signIn={(provider, formData) =>
@@ -179,6 +178,5 @@ export default function Login() {
         providers={providers}
       />
     </AppProvider>
-    </div>
   );
 }

@@ -5,6 +5,8 @@ import { ProductContext } from "../Utils/Context";
 import Loading from "./Loading";
 import Axios from "../Utils/Axios";
 
+
+
 const Home = () => {
   const [products] = useContext(ProductContext);
   // console.log(products);

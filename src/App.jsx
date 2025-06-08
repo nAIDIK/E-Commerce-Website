@@ -10,8 +10,7 @@ import About from "./Components/About";
 import ContactPage from "./Components/ContactPage";
 import SlotPropsSignIn from "./Components/SlotPropsSignIn"
 import Login from "./Components/Login"
-
-
+// import SplashCursor from './Components/SplashCursor'
 
 
 const App = () => {
@@ -31,6 +30,7 @@ const App = () => {
         </Routes>
     </div> 
     <Footer/>
+    {/* <SplashCursor /> */}
     </>
   );
 };

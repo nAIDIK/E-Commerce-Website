@@ -3,7 +3,7 @@ import { FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
 
 const ContactPage = () => {
   return (
-    <div className=" bg-slate-600 h-full w-full">
+    <div className=" bg-purple-300 h-full w-full">
     <div className="min-h-screen bg-gradient-to-r from-blue-50 to-blue-100 flex items-center justify-center px-4 py-10">
       <div className="bg-slate-400 shadow-2xl rounded-xl max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 overflow-hidden">
         
